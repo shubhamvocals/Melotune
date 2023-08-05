@@ -1,0 +1,37 @@
+body {
+    width: 320px;
+    font-family: 'Archivo', sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 10px;
+    background-color: #000; 
+  }
+  
+  .container {
+    background-color: #111;
+  }
+
+  .trackInfo {
+    display: flex;
+  }
+  
+  .trackImage {
+    width: 150px;
+    height: 150px;
+    padding: 2%;
+  }
+
+  #trackName{
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .details {
+    padding: 2%;
+  }
+  
+  .property {
+    margin-bottom: 8px;
+  }  
+
+  

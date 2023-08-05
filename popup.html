@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Song Details</title>
+  <link rel="stylesheet" type="text/css" href="popup.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100;400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="trackInfo">
+      <img id="trackImage" class="trackImage" src="" alt=" ">
+      <div id="trackDetails" class="details">
+        <div class="property">
+          <span id="trackName" class="value"></span>
+        </div>
+        <div class="property">
+          <span id="artistName" class="value"></span>
+        </div>
+        <div class="audio-features">
+          <div class="property">
+            <span id="key" class="value"></span>
+          </div>
+          <div class="property">
+            <span id="tempo" class="value"></span>
+          </div>
+          <div class="property">
+            <span id="duration" class="value"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="errorMessage" class="errorMessage"></div>
+  </div>
+  <script src="popup.js" type="module"></script>
+</body>
+</html>
