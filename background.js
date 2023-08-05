@@ -1,21 +1,18 @@
 let CLIENT_ID;
 let CLIENT_SECRET;
-let REDIRECT_URI;
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === "configData") {
         const configData = message.config;
         CLIENT_ID = encodeURIComponent(configData.CLIENT_ID);
         CLIENT_SECRET = encodeURIComponent(configData.CLIENT_SECRET);
-        REDIRECT_URI = encodeURIComponent(configData.REDIRECT_URI);
     }
 });
-
+const REDIRECT_URI = chrome.identity.getRedirectURL();
 const RESPONSE_TYPE = encodeURIComponent('code');
 const SCOPE = encodeURIComponent('user-read-currently-playing');
 
 let ACCESS_TOKEN = '';
-let REFRESH_TOKEN = '';
 
 function create_spotify_endpoint() {
     let oauth2_url = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&redirect_uri=${REDIRECT_URI}&scope=${SCOPE}`;
@@ -27,7 +24,7 @@ async function getTokensWithCode(code) {
     const requestBody = new URLSearchParams();
     requestBody.append("grant_type", "authorization_code");
     requestBody.append("code", code);
-    requestBody.append("redirect_uri", "https://cpcodjjmjhibpajdlgjiieifgpmfphoh.chromiumapp.org");
+    requestBody.append("redirect_uri", REDIRECT_URI);
 
     const authHeader = "Basic " + btoa(`${CLIENT_ID}:${CLIENT_SECRET}`);
 
@@ -47,7 +44,6 @@ async function getTokensWithCode(code) {
     })
     .then(tokens => {
         ACCESS_TOKEN = tokens.access_token;
-        REFRESH_TOKEN = tokens.refresh_token;
         chrome.storage.local.set({ accessToken: ACCESS_TOKEN});
     })
     .catch(error => {
