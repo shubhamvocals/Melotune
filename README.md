@@ -1,0 +1,1 @@
+A chrome extension that uses Spotify Web API to extract the Key and Tempo of the song played by the user in real time and display them in the extension, helpful for budding musicians to know the song.
